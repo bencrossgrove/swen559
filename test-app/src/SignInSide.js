@@ -35,14 +35,15 @@ async function getBackground() {
   try {
     const remoteConfig = firebase.remoteConfig();
     remoteConfig.settings = {
-      minimumFetchIntervalMillis: 3600000
+      minimumFetchIntervalMillis: 10000
     };
     remoteConfig.defaultConfig = ({
       'background_img': 'real_goat.jpg'
     })
 
     await remoteConfig.fetchAndActivate();
-    background = './' + remoteConfig.getString('background_img');
+    var backgroundTemp = remoteConfig.getString('background_img');
+    return backgroundTemp;
   } catch(e) {
     console.error(e)
   }
@@ -53,7 +54,7 @@ const useStyles = makeStyles(theme => ({
     height: '100vh'
   },
   image: {
-    backgroundImage: `url(${background})`,
+    backgroundImage: `url(${getBackground()})`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
