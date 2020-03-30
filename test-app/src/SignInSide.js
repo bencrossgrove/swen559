@@ -13,7 +13,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import firebase from './firebase';
-import Background from './goat.png';
+import 'firebase/analytics';
+import 'firebase/remote-config';
+import Background from './real_goat.jpg';
 
 function Copyright () {
   return (
@@ -28,12 +30,30 @@ function Copyright () {
   )
 }
 
+var background = Background;
+async function getBackground() {
+  try {
+    const remoteConfig = firebase.remoteConfig();
+    remoteConfig.settings = {
+      minimumFetchIntervalMillis: 3600000
+    };
+    remoteConfig.defaultConfig = ({
+      'background_img': 'real_goat.jpg'
+    })
+
+    await remoteConfig.fetchAndActivate();
+    background = './' + remoteConfig.getString('background_img');
+  } catch(e) {
+    console.error(e)
+  }
+}
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh'
   },
   image: {
-    backgroundImage: `url(${Background})`,
+    backgroundImage: `url(${background})`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
@@ -61,9 +81,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignInSide () {
   const classes = useStyles()
+  const analytics = firebase.analytics();
 
   const handleSubmit = event => {
     event.preventDefault();
+    analytics.logEvent('login_web');
     alert('Hello');
   };
 
