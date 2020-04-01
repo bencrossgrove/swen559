@@ -32,8 +32,8 @@ function Copyright () {
 }
 
 function getBackground() {
-  let value = remoteConfig.getValue('background_img');
-  return value._value
+  let value = remoteConfig.getString('background_img');
+  return value
 }
 
 const useStyles = makeStyles(theme => ({
