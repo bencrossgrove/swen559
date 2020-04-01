@@ -1,14 +1,15 @@
-import firebase from 'firebase'
-const config = {
-  apiKey: 'AIzaSyAj1l42bYZUAJmxtiJv6WUoSSNLyWwrLp4',
-  authDomain: 'swen-559.firebaseapp.com',
-  databaseURL: 'https://swen-559.firebaseio.com',
-  projectId: 'swen-559',
-  storageBucket: 'swen-559.appspot.com',
-  messagingSenderId: '1018085688552',
-  appId: '1:1018085688552:web:ea001ae3a6376a4621755d',
-  measurementId: 'G-0EVZ7DDPK3'
-}
+import firebase from 'firebase';
 
-firebase.initializeApp(config)
-export default firebase
+const config = {
+  apiKey: 'AIzaSyC_A_6VzR0PVTvt1F0EiPDeIx36qCT6iac',
+  authDomain: 'testing-34a16.firebaseapp.com',
+  databaseURL: 'https://testing-34a16.firebaseio.com',
+  projectId: 'testing-34a16',
+  storageBucket: 'testing-34a16.appspot.com',
+  messagingSenderId: '691214925536',
+  appId: '1:691214925536:web:2e6971f791f99dc4e59a85',
+  measurementId: 'G-KKXBJNC04T'
+};
+
+firebase.initializeApp(config);
+export default firebase;

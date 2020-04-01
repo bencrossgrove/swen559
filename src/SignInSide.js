@@ -13,7 +13,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import firebase from './firebase';
-import Background from './goat.png';
+import remoteConfig from './remoteconfig'
+import 'firebase/analytics';
+
+const analytics = firebase.analytics();
 
 function Copyright () {
   return (
@@ -28,12 +31,17 @@ function Copyright () {
   )
 }
 
+function getBackground() {
+  let value = remoteConfig.getValue('background_img');
+  return value._value
+}
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh'
   },
   image: {
-    backgroundImage: `url(${Background})`,
+    backgroundImage: `url(${getBackground()})`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
@@ -64,6 +72,7 @@ export default function SignInSide () {
 
   const handleSubmit = event => {
     event.preventDefault();
+    analytics.logEvent('login_web');
     alert('Hello');
   };
 
