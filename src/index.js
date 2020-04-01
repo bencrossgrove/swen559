@@ -3,13 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import SignInSide from './SignInSide';
 import * as serviceWorker from './serviceWorker';
-import remoteConfig from './remoteconfig'
 
-remoteConfig
-  .fetchAndActivate()
-  .then(() => {
-    ReactDOM.render(<SignInSide />, document.getElementById('root'));
-  });
+ReactDOM.render(<SignInSide />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
