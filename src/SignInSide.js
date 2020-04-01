@@ -12,8 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import firebase from './firebase';
-import Background from './goat.png';
+
 
 function Copyright () {
   return (
@@ -28,12 +27,17 @@ function Copyright () {
   )
 }
 
+function getBackground() {
+  let value = 'https://preview.redd.it/3aeg40i6gxv31.png?width=2482&format=png&auto=webp&s=43ae1ade14d39f8cec64c9301bd313a6a23df2c3'
+  return value
+}
+
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh'
   },
   image: {
-    backgroundImage: `url(${Background})`,
+    backgroundImage: `url(${getBackground()})`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
       theme.palette.type === 'dark' ? theme.palette.grey[900] : theme.palette.grey[50],
